@@ -20,6 +20,14 @@
 3. 可定制化下载
 > 有一定的学习成本
 
+### [draggabilly](https://draggabilly.desandro.com/)
+
+拖拽插件
+
+### [ckplayer](http://www.ckplayer.com/)
+
+视频播放器插件
+
 # 工具
 
 ## 图片压缩
@@ -62,23 +70,57 @@
 
 ### [weui](https://weui.io/)
 
-​	文档地址: [weui](https://github.com/Tencent/weui/blob/master/README_cn.md)
-
 ### [Layui](https://www.layui.com/)
 
 ### [Animate.css](https://animate.style/)
 
-
-
-
-
-# 社区&论坛&资源
+# 社区&论坛
 
 ### [掘金](https://juejin.im/)
 
 ### [SegmentFault](https://segmentfault.com/)
 
-### [awesomes](https://www.awesomes.cn/)
+
+
+# 资源
 
 ### [jQuery插件库](jq22.com)
+
+### [awesomes](https://www.awesomes.cn/)
+
+### [素材火](https://www.sucaihuo.com/)
+
+### [jQuery之家](http://www.htmleaf.com/)
+
+### [618插件](http://618cj.com/)
+
+
+
+# 图床
+
+## 在线图床
+
+- #### [Image Upload](https://sm.ms/)
+
+- #### [路过图床](https://imgchr.com/)
+
+## 图床工具
+
+- #### [PicGo](https://github.com/Molunerfinn/PicGo)
+
+# 后端云
+
+### [Bmob](https://www.bmob.cn/)
+
+### [知晓云](https://cloud.minapp.com/)
+
+# 在线教育
+
+### [慕课网](https://www.imooc.com/)
+
+### [网易云课堂](https://study.163.com/)
+
+
+
+
 
