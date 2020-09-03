@@ -63,6 +63,36 @@ console.log(ldh.sex)	// undefined
 
 作用：我们可以把那些不变的方法，直接定义在prototype对象上，这样所有对象的实例就可以共享这个方法
 
+```javascript
+function Star(uname, age) {
+    this.uname = uname;
+    this.age = age;
+    /* this.sing = function(){
+        console.log('我会唱歌');
+    } */
+}
+Star.prototype.sing = function(){
+	console.log('我会唱歌')
+}
+var ldh = new Star('刘德华', 30);
+var zxy = new Star('张学友', 40);
+ldh.sing();		// 我会唱歌
+zxy.sing();		// 我会唱歌
+console.log(ldh.sing === zxy.sing)	// true
+```
+
+1. 原型是什么？
+
+   一个对象，我们也称为 `prototype` 为原型对象
+
+2. 原型的作用是什么？
+
+   共享方法
+
+> 一般情况下，公共属性定义到构造函数里面，公共的方法放到原型对象上
+>
+> 对象身上系统会自动添加一个 `__proto__` 指向我们构造函数的原型对象
+
 
 
 
