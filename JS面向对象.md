@@ -83,7 +83,7 @@ console.log(ldh.sing === zxy.sing)	// true
 
 1. 原型是什么？
 
-   一个对象，我们也称为 `prototype` 为原型对象
+   一个对象，我们也称为 `prototype` 的原型对象
 
 2. 原型的作用是什么？
 
@@ -92,6 +92,97 @@ console.log(ldh.sing === zxy.sing)	// true
 > 一般情况下，公共属性定义到构造函数里面，公共的方法放到原型对象上
 >
 > 对象身上系统会自动添加一个 `__proto__` 指向我们构造函数的原型对象
+>
+> `__proto__` 对象原型与原型对象 `prototype` 是等价的
+
+方法查找规则：
+
+1. 先查找构造函数中是否有 `sing` 方法，如果有就执行次方法
+2. 如果没有，因为有 `__proto__` 的存在，就会去构造函数原型对象 `prototype` 中查找 `sing` 方法
+
+## constructor构造函数
+
+对象原型 `__proto__` 和构造函数 `prototype` 原型对象里面都有一个属性: `constructor` ，我们称之为构造函数，因为它指向构造函数本身 
+
+作用：用于记录该对象引用与哪个构造函数，它可以让原型对象重新指向原来的构造函数
+
+```javascript
+function Star(uname, age) {
+    this.uname = uname;
+    this.age = age;
+    /* this.sing = function(){
+        console.log('我会唱歌');
+    } */
+}
+Star.prototype.sing = function(){
+	console.log('我会唱歌')
+}
+var ldh = new Star('刘德华', 30);
+var zxy = new Star('张学友', 40);
+console.log(Star.prototype.constructor);
+console.log(ldh.__proto__.constructor);
+```
+
+很多情况下，我们需要手动利用`constructor` 这个属性指回原来的构造函数
+
+```javascript
+function Star(uname, age) {
+    this.uname = uname;
+    this.age = age;
+}
+/* Star.prototype.sing = function(){
+	console.log('我会唱歌')
+}
+Star.prototype.movie = function(){
+	console.log('我会演电影')
+} */
+Star.prototype = {
+    constructor: Star,		// 这行代码将指回原来 (Star) 的构造函数
+    sing: function(){
+        console.log('我会唱歌')
+    },
+    movie: function(){
+        console.log('我会演电影')
+    }
+}
+var ldh = new Star('刘德华', 30);
+var zxy = new Star('张学友', 40);
+console.log(Star.prototype.constructor);
+console.log(ldh.__proto__.constructor);
+```
+
+## 原型链
+
+1. 只要是对象就有 `__proto__` 原型，指向原型对象
+
+2. Star原型对象里面的 `__proto__` 原型指向的是 `Object.protyotype` 
+3. `Object.prototype` 原型对象里面的 `__proto__` 原型 指向为 `null` 
+
+```javascript
+function Star(uname, age) {
+    this.uname = uname;
+    this.age = age;
+}
+Star.prototype.sing = function(){
+	console.log('我会唱歌')
+}
+var ldh = new Star('刘德华', 30);
+console.log(Star.prototype);
+console.log(Star.prototype.__proto__ === Object.prototype);		// true
+```
+
+## JavaScript的成员查找机制（规则）
+
+1. 当访问一个对象的属性（包括方法）时，首先查找这个对象自身有没有该属性
+2. 如果没有就查找它的原型（也就是 `__proto__` 指向的 `prototype` 原型对象）
+3. 如果还没找到就查找原型对象的原型（`Object`  的原型对象）
+4. 依次类推一直找到 `Object` 为止（ `null` ）
+
+
+
+
+
+
 
 
 
