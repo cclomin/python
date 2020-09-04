@@ -178,7 +178,40 @@ console.log(Star.prototype.__proto__ === Object.prototype);		// true
 3. 如果还没找到就查找原型对象的原型（`Object`  的原型对象）
 4. 依次类推一直找到 `Object` 为止（ `null` ）
 
+```javascript
+function Star(uname, age) {
+    this.uname = uname;
+    this.age = age;
+}
+Star.prototype.sing = function(){
+	console.log('我会唱歌')
+}
+var ldh = new Star('刘德华', 30);
+Object.prototype.sex = '1';			// Object的原型
+// Star.prototype.sex = '男';		// 原型
+// ldh.sex = '男';					// 对象自身
+/* 对象属性查找有一个就近原则 */
+console.log(ldh.sex);
+```
 
+## 原型对象this指向
+
+```javascript
+function Star(uname, age) {
+    this.uname = uname;
+    this.age = age;
+}
+var that;
+Star.prototype.sing = function(){
+	console.log('我会唱歌')
+    that = this;
+}
+var ldh = new Star('刘德华', 30);
+// 1. 在构造函数中，里面的 this指向的是对象实例 ldh
+ldh.sing();
+console.log(that === ldh); // true
+// 2. 原型对象函数里面的 this 指向的是实例对象 ldh
+```
 
 
 
