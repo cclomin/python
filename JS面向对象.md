@@ -213,7 +213,85 @@ console.log(that === ldh); // true
 // 2. 原型对象函数里面的 this 指向的是实例对象 ldh
 ```
 
+## 扩展内置对象
 
+扩展一个数组求和的方法
+
+```javascript
+Array.prototype.sum = function(){
+    var sum = 0;
+    for(var i=0; i<this.length; i++){
+        sum += this[i];
+    }
+    return sum;
+}
+var arr = [1, 10, 20];
+console.log(arr.sum())		// 31
+```
+
+# 继承
+
+## call()
+
+### 作用：
+
+调用这个函数，并且修改函数运行时的 `this` 指向
+
+```javascript
+fun.call(thisArg, arg1, arg2, ...);
+```
+
+- thisArg: 当前调用函数 `this` 的指向对象
+- arg1, arg2, ...: 传递的其他参数
+
+```javascript
+function fn(){
+    console.log('我今年27岁！');
+}
+// 1. 调用函数
+fn.call();	// 我今年27岁！
+```
+
+```javascript
+function fn(){
+    console.log('我今年27岁！');
+    console.log(this)
+}
+var o = {
+    name: 'andy'
+}
+// 2. 改变函数的this指向，此时fn函数中的this指向了对象 o
+fn.call(o);	// {name: "andy"}
+```
+
+```javascript
+function fn(x, y){
+    console.log('我今年27岁！');
+    console.log(this)
+    console.log(x + y)
+}
+var o = {
+    name: 'andy'
+}
+// 2. 传递更多参数
+fn.call(o, 10, 20);	// 30
+```
+
+### 利用父构造函数继承属性
+
+```javascript
+function Father(uname, age) {
+    // this 指向父构造函数的对象实例
+    this.uname = uname;
+    this.age = age;
+}
+function Son(uname, age) {
+    // this 指向子构造函数的对象实例
+    Father.call(this, uname, age);
+}
+var son = new Son('刘德华', 18)
+console.log(son)
+```
 
 
 
